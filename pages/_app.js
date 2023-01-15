@@ -6,8 +6,15 @@ import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import Footer from "@/components/layout/Footer";
+import Router from "next/router";
+import nProgress from "nprogress";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
+
+
+Router.events.on("routeChangeComplete",()=>nProgress.start());
+Router.events.on("routeChangeComplete",()=>nProgress.done());
 
 function MyApp({ Component, pageProps }) {
   useEffect(()=>{
@@ -18,6 +25,7 @@ function MyApp({ Component, pageProps }) {
     <>
     <Header/>
     <Component {...pageProps} />
+    <Footer/>
     <ToastContainer/>
 
     </>

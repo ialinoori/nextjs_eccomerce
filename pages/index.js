@@ -1,6 +1,7 @@
 import About from "@/components/About";
-import ContactForm from "@/components/ContactForm";
+import ContactForm from "@/components/contact/ContactForm";
 import Features from "@/components/Features";
+// import Map from "@/components/contact/Map";
 import ProductsTab from "@/components/product/ProductsTab";
 import axios from "axios";
 import { handleError } from "lib/helper";
@@ -9,6 +10,9 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import styles from "../styles/Home.module.css";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(()=>import("@/components/contact/Map"),{ssr:false});
 
 const Home = ({ productsTab, error }) => {
   useEffect(() => {
@@ -34,7 +38,7 @@ const Home = ({ productsTab, error }) => {
                 </div>
                 <div className="col-md-6">
                     <div className="map_container ">
-                        {/* <div id="map" style="height: 345px;"></div> */}
+                        <Map/>
                     </div>
                 </div>
             </div>
