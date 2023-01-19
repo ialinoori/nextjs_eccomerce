@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import heroImage from "public/images/hero-bg.jpg";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import AuthContext from "@/context/AuthContext";
 
 const Header = () => {
   const router = useRouter();
+  const {user} = useContext(AuthContext)
+
   return (
     <div className={router.pathname === "/" ? "" : "sub_page"}>
       <div className="hero_area">
@@ -74,9 +77,19 @@ const Header = () => {
                       3
                     </span>
                   </a>
-                  <a href="login.html" className="btn-auth">
-                    ورود
-                  </a>
+                  {
+                    user ? (
+                      <Link href="/profile" className="btn-auth">
+                      پروفایل
+                    </Link>
+                    ) : (
+                      <Link href="/auth/login" className="btn-auth">
+                      ورود
+                    </Link>
+                    )
+
+                  }
+              
                 </div>
               </div>
             </nav>
