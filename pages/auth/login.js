@@ -2,8 +2,10 @@ import CheckOtp from "@/components/auth/CheckOtp";
 import Login from "@/components/auth/Login";
 import React, { useState } from "react";
 
+
 const LoginPage = () => {
-  const [ step ,setStep] = useState(1)
+  const [ step ,setStep] = useState(1);
+  
   return (
     <section className="auth_section book_section">
       <div className="container">
