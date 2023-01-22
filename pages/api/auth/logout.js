@@ -11,24 +11,22 @@ export default async function handler(req, res) {
         }
 
         try {
-            const resApi = await axios.post('/auth/check-otp', {
-                otp: req.body.otp,
-                login_token: req.cookies.login_token
+            const resApi = await axios.post('/auth/logout', {},{
+                headers:{
+                    "Authorization":`Bearer ${req.cookies.token}`
+                }
+
             });
 
-            res.setHeader('Set-Cookie', [cookie.serialize('login_token', '', {
+            res.setHeader('Set-Cookie', cookie.serialize('token', '', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV !== 'development',
                 maxAge: new Date(0),
                 path: '/'
-            }), cookie.serialize('token', resApi.data.data.token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV !== 'development',
-                maxAge: 60 * 60 * 24 * 7, // 1 week
-                path: '/'
-            })])
+            })), 
+            
 
-            res.status(200).json({ user: resApi.data.data.user })
+            res.status(200).json({ message: "کاربر از سیستم خارج شد" })
 
         } catch (err) {
             res.status(422).json({ message: { 'err': [handleError(err)] } })

@@ -1,7 +1,9 @@
+import AuthContext from "@/context/AuthContext";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 
 const Layout = ({ children }) => {
+  const {logout} = useContext(AuthContext);
   return (
     <section className="profile_section layout_padding">
       <div className="container">
@@ -21,7 +23,7 @@ const Layout = ({ children }) => {
                 <Link href="/profile/transactions">تراکنش ها</Link>
               </li>
               <li className="list-group-item">
-                <a href="/profile/transactions">خروج</a>
+                <a onClick={logout} href="#">خروج</a>
               </li>
             </ul>
           </div>
