@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <section className="profile_section layout_padding">
       <div className="container">
@@ -20,11 +20,12 @@ const Layout = ({children}) => {
               <li className="list-group-item">
                 <Link href="/profile/transactions">تراکنش ها</Link>
               </li>
+              <li className="list-group-item">
+                <a href="/profile/transactions">خروج</a>
+              </li>
             </ul>
           </div>
-          <div className="col-sm-12 col-lg-9">
-             {children}
-          </div>
+          <div className="col-sm-12 col-lg-9">{children}</div>
         </div>
       </div>
     </section>

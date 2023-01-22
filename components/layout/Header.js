@@ -7,7 +7,7 @@ import AuthContext from "@/context/AuthContext";
 
 const Header = () => {
   const router = useRouter();
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   return (
     <div className={router.pathname === "/" ? "" : "sub_page"}>
@@ -19,10 +19,8 @@ const Header = () => {
         <header className="header_section">
           <div className="container">
             <nav className="navbar navbar-expand-lg custom_nav-container">
-                <Link className="navbar-brand" href="/">
-             
+              <Link className="navbar-brand" href="/">
                 <span>webprog.io</span>
-            
               </Link>
 
               <button
@@ -42,31 +40,46 @@ const Header = () => {
                 id="navbarSupportedContent"
               >
                 <ul className="navbar-nav mx-auto">
-                  <li className={ router.pathname === "/" ?" nav-item active":"nav-item"}>
-                    <Link  className="nav-link" href="/">
-                   
+                  <li
+                    className={
+                      router.pathname === "/" ? " nav-item active" : "nav-item"
+                    }
+                  >
+                    <Link className="nav-link" href="/">
                       صفحه اصلی
-                   
                     </Link>
                   </li>
-                  <li className={ router.pathname === "/menu" ?" nav-item active":"nav-item"}>
-                    <Link  className="nav-link" href="/menu">
-                  
+                  <li
+                    className={
+                      router.pathname === "/menu"
+                        ? " nav-item active"
+                        : "nav-item"
+                    }
+                  >
+                    <Link className="nav-link" href="/menu">
                       منو
                     </Link>
                   </li>
-                  <li className={ router.pathname === "/about" ?" nav-item active":"nav-item"}>
-                    <Link  className="nav-link" href="/about">
-                   
+                  <li
+                    className={
+                      router.pathname === "/about"
+                        ? " nav-item active"
+                        : "nav-item"
+                    }
+                  >
+                    <Link className="nav-link" href="/about">
                       درباره ما
-                    
                     </Link>
                   </li>
-                  <li className={ router.pathname === "/contact" ?" nav-item active":"nav-item"}>
-                    <Link className="nav-link"  href="/contact">
-                   
+                  <li
+                    className={
+                      router.pathname === "/contact"
+                        ? " nav-item active"
+                        : "nav-item"
+                    }
+                  >
+                    <Link className="nav-link" href="/contact">
                       تماس باما
-                   
                     </Link>
                   </li>
                 </ul>
@@ -77,19 +90,15 @@ const Header = () => {
                       3
                     </span>
                   </a>
-                  {
-                    user ? (
-                      <Link href="/profile" className="btn-auth">
+                  {user ? (
+                    <Link href="/profile" className="btn-auth">
                       پروفایل
                     </Link>
-                    ) : (
-                      <Link href="/auth/login" className="btn-auth">
+                  ) : (
+                    <Link href="/auth/login" className="btn-auth">
                       ورود
                     </Link>
-                    )
-
-                  }
-              
+                  )}
                 </div>
               </div>
             </nav>
