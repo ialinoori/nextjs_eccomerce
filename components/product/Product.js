@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { numberFormat } from 'lib/helper';
+import Link from 'next/link';
 
 const Product = ({product}) => {
     return (
@@ -10,7 +11,7 @@ const Product = ({product}) => {
            <Image className='img-fluid' src={product.primary_image} width={366} height={244} placeholder="blur" blurDataURL={product.primary_image_blurDataURL} layout="responsive"/>
           </div>
           <div className="detail-box">
-            <h5>{product.name}  </h5>
+            <h5><Link href={`/products/${product.slug}`}>{product.name} </Link> </h5>
             <p>
           {product.description}
             </p>
