@@ -1,8 +1,10 @@
 import Product from "@/components/product/Product";
+import { addToCart, removeFromCart } from "@/redux/cart/action";
 import axios from "axios";
 import { handleError, numberFormat, salePercent } from "lib/helper";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 const ProductPage = ({ product, error,randomProduct }) => {
@@ -10,6 +12,12 @@ const ProductPage = ({ product, error,randomProduct }) => {
   useEffect(() => {
     error && toast.error(error);
   }, []);
+  const dispatch = useDispatch();
+  const handleAddToCart = ()=> {
+    dispatch(removeFromCart(product.id))
+    dispatch(addToCart(product,quantity))
+    toast.success("محصول با موفقیت به سبد خرید افزوده شد")
+  }
   return (
     <>
       {product && (
@@ -41,7 +49,9 @@ const ProductPage = ({ product, error,randomProduct }) => {
                     <p>{product.description}</p>
 
                     <div className="mt-5 d-flex">
-                      <button className="btn-add">افزودن به سبد خرید</button>
+                      <button 
+                      onClick={handleAddToCart}
+                       className="btn-add">افزودن به سبد خرید</button>
                       <div className="input-counter ms-4">
                         <span
                           className="plus-btn"

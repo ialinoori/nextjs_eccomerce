@@ -2,8 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import { numberFormat } from 'lib/helper';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from '@/redux/cart/action';
+import { toast } from 'react-toastify';
 
 const Product = ({product}) => {
+  const dispatch = useDispatch();
+  const handleAddToCart = ()=> {
+    dispatch(removeFromCart(product.id))
+    dispatch(addToCart(product,1))
+    toast.success("محصول با موفقیت به سبد خرید افزوده شد")
+  }
     return (
         <div className="box">
         <div>
@@ -30,9 +39,9 @@ const Product = ({product}) => {
                 )
                }
               </h6>
-              <a href="">
+              <button onClick={handleAddToCart}>
                 <i className="bi bi-cart-fill text-white fs-5"></i>
-              </a>
+              </button>
             </div>
           </div>
         </div>
