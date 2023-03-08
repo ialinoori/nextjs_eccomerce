@@ -47,7 +47,13 @@ const ProfileOrderPage = () => {
                 <th>{item.order_id}</th>
                 <td>{numberFormat(item.amount)} تومان</td>
                 <td>
-                  <span className={item.status == "موفق"?"text-success":"text-danger"}>{item.status}</span>
+                  <span
+                    className={
+                      item.status == "موفق" ? "text-success" : "text-danger"
+                    }
+                  >
+                    {item.status}
+                  </span>
                 </td>
                 <td>{item.trans_id}</td>
                 <td>{item.created_at}</td>

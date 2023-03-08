@@ -1,5 +1,6 @@
 import Address from "@/components/cart/Address";
 import Coupon from "@/components/cart/Coupon";
+import Payment from "@/components/cart/Payment";
 import {
   clearCart,
   decrement,
@@ -15,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 const CartPage = () => {
   const [cart, setCart] = useState(null);
   const [coupon, setCoupon] = useState({ code: null, percent: 0 });
-  const [addressId , setAddressId] = useState(null)
+  const [addressId, setAddressId] = useState(null);
   const state = useSelector((state) => state.shoppingCart);
   const dispatch = useDispatch();
 
@@ -148,7 +149,7 @@ const CartPage = () => {
                     <Coupon coupon={coupon} setCoupon={setCoupon} />
                   </div>
                   <div className="col-12 col-md-6 d-flex justify-content-end align-items-baseline">
-            <Address setAddressId={setAddressId}/>
+                    <Address setAddressId={setAddressId} />
                   </div>
                 </div>
                 <div className="row justify-content-center mt-5">
@@ -159,35 +160,57 @@ const CartPage = () => {
                         <ul className="list-group mt-4">
                           <li className="list-group-item d-flex justify-content-between">
                             <div>مجموع قیمت :</div>
-                            <div>{cart.reduce((total,product) => {
-                              return product.is_sale ? (total + product.sale_price * product.qty):(total + product.price * product.qty)
-
-                            },0)} تومان</div>
+                            <div>
+                              {cart.reduce((total, product) => {
+                                return product.is_sale
+                                  ? total + product.sale_price * product.qty
+                                  : total + product.price * product.qty;
+                              }, 0)}{" "}
+                              تومان
+                            </div>
                           </li>
                           <li className="list-group-item d-flex justify-content-between">
                             <div>
                               تخفیف :
-                              <span className="text-danger ms-1">{coupon.percent}%</span>
+                              <span className="text-danger ms-1">
+                                {coupon.percent}%
+                              </span>
                             </div>
-                            <div className="text-danger">{cart.reduce((total,product) => {
-                              return product.is_sale ? (total + product.sale_price * product.qty):(total + product.price * product.qty)
-
-                            },0) *(coupon.percent / 100) }  تومان</div>
+                            <div className="text-danger">
+                              {cart.reduce((total, product) => {
+                                return product.is_sale
+                                  ? total + product.sale_price * product.qty
+                                  : total + product.price * product.qty;
+                              }, 0) *
+                                (coupon.percent / 100)}{" "}
+                              تومان
+                            </div>
                           </li>
                           <li className="list-group-item d-flex justify-content-between">
                             <div>قیمت پرداختی :</div>
-                            <div>{numberFormat(cart.reduce((total,product) => {
-                              return product.is_sale ? (total + product.sale_price * product.qty):(total + product.price * product.qty)
-
-                            },0) - cart.reduce((total,product) => {
-                              return product.is_sale ? (total + product.sale_price * product.qty):(total + product.price * product.qty)
-
-                            },0) *(coupon.percent / 100)) } تومان</div>
+                            <div>
+                              {numberFormat(
+                                cart.reduce((total, product) => {
+                                  return product.is_sale
+                                    ? total + product.sale_price * product.qty
+                                    : total + product.price * product.qty;
+                                }, 0) -
+                                  cart.reduce((total, product) => {
+                                    return product.is_sale
+                                      ? total + product.sale_price * product.qty
+                                      : total + product.price * product.qty;
+                                  }, 0) *
+                                    (coupon.percent / 100)
+                              )}{" "}
+                              تومان
+                            </div>
                           </li>
                         </ul>
-                        <button className="user_option btn-auth mt-4">
-                          پرداخت
-                        </button>
+                        <Payment
+                          cart={cart}
+                          coupon={coupon}
+                          addressId={addressId}
+                        />
                       </div>
                     </div>
                   </div>

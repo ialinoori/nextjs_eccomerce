@@ -33,7 +33,7 @@ const Edit = ({ address, provinces, cities }) => {
       );
 
       toast.success("ادرس با موفقیت ویرایش شد");
-      mutate(`${process.env.NEXT_PUBLIC_APP_API_URL}/profile/addresses/edit`)
+      mutate(`${process.env.NEXT_PUBLIC_APP_API_URL}/profile/addresses`)
     } catch (err) {
       toast.error(handleError(err));
     } finally {

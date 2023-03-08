@@ -96,7 +96,7 @@ const MenuPage = ({ products, categories, error }) => {
                 />
                 <label
                   className="form-check-label cursor-pointer"
-                  for="flexRadioDefault1"
+                  htmlFor="flexRadioDefault1"
                 >
                   بیشترین قیمت
                 </label>
